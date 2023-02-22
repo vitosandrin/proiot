@@ -4,6 +4,7 @@ import { DeviceModel } from "./../models/device";
 import { response } from "../utils/response";
 import Service from "./Service";
 import { Types } from "mongoose";
+import { sendMessageSocket } from "../ws";
 
 class Devices {
   public device;
@@ -65,7 +66,7 @@ class Devices {
   };
 
   findOne = async (req: Request, res: Response) => {
-    const { params } = req;
+    const { params, query } = req;
 
     if (!Types.ObjectId.isValid(params.id)) {
       response(res, 422, "ERROR");
@@ -78,6 +79,15 @@ class Devices {
         response(res, 404, "ERROR");
         return;
       }
+
+      if (query.socketId) {
+        await sendMessageSocket({
+          message: "sendDevice",
+          id: query.socketId as string,
+          data: device,
+        });
+      }
+
       response(res, 200, "OK", device);
     } catch (error) {
       response(res, 502, "ERROR");

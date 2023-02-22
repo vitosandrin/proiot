@@ -21,7 +21,7 @@ export const sendMessageSocket = async ({
   data,
 }: ISocketProps) => {
   try {
-    const socket = io.sockets.sockets.get(id);
+    const socket = io;
     socket?.emit(message, data);
   } catch (err) {
     console.log(err);
