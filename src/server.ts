@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import http from "http";
 import { Server } from "socket.io";
 import express from "./config/express";
-import setupSocket from "./config/socket";
 dotenv.config();
 
 const { APP_PORT, APP_HOST } = process.env;
