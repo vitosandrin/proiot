@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { DeviceModel } from "./../models/device";
 
+import io from "../config/socket";
 import { response } from "../utils/response";
 import Service from "./Service";
 import { Types } from "mongoose";
@@ -135,7 +136,7 @@ class Devices {
       response(res, 404, "ERROR");
       return;
     }
-    
+
     try {
       await this.device.remove(req, { _id: params.id });
 
