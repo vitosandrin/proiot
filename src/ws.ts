@@ -24,6 +24,10 @@ export class ServerSocket {
   startListeners = (socket: Socket) => {
     console.info("Connection received from " + socket.id);
 
+    socket.on("message", (data, payload) => {
+      console.log(data, "from", socket.id);
+      socket.emit(payload);
+    });
     socket.on("disconnect", () => {
       console.info("Disconnect received from: " + socket.id);
     });
