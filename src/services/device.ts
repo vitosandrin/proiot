@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { DeviceModel } from "./../models/device";
 
-import io from "../config/socket";
 import { response } from "../utils/response";
 import Service from "./Service";
 import { Types } from "mongoose";
