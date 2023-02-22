@@ -1,29 +1,36 @@
-import { ISocketProps } from "./interfaces/socket";
-import { io } from "./server";
+import { Server as HttpServer } from "http";
+import { Socket, Server } from "socket.io";
 
-export const connect = () => {
-  io.on("connection", (socket) => {
-    console.log("Connected", socket.id);
-    return socket.id;
-  });
-};
+export class ServerSocket {
+  public static instance: ServerSocket;
+  public io: Server;
 
-export const disconnect = () => {
-  io.on("disconnect", (socket) => {
-    console.log("disconnected", socket.id);
-    return socket.id;
-  });
-};
+  constructor(server: HttpServer) {
+    ServerSocket.instance = this;
 
-export const sendMessageSocket = async ({
-  message,
-  id,
-  data,
-}: ISocketProps) => {
-  try {
-    const socket = io;
-    socket?.emit(message, data);
-  } catch (err) {
-    console.log(err);
+    this.io = new Server(server, {
+      serveClient: false,
+      pingInterval: 10000,
+      pingTimeout: 5000,
+      cookie: false,
+      cors: {
+        origin: "*",
+      },
+    });
+
+    this.io.on("connect", this.startListeners);
   }
-};
+
+  startListeners = (socket: Socket) => {
+    console.info("Connection received from " + socket.id);
+
+    socket.on("disconnect", () => {
+      console.info("Disconnect received from: " + socket.id);
+    });
+  };
+
+  sendMessage = (name: string, socketId: string, payload?: Object) => {
+    console.info("Emitting event: " + name);
+    this.io.to(socketId).emit(name, payload);
+  };
+}
