@@ -4,3 +4,9 @@ export interface ISocketData {
   temperature: string;
   humidity: string;
 }
+
+export interface ISocketProps {
+  message: string;
+  id: string;
+  data: any;
+}
