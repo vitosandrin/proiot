@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 import http from "http";
-import { Server } from "socket.io";
 import express from "./config/express";
 import { ServerSocket } from "./ws";
 

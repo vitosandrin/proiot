@@ -9,7 +9,7 @@ import { IDevice, initialStateDevice } from "../../interfaces/device";
 
 export const NewDevice = () => {
   const [message, setMessage] = useState("");
-  const [messageReceived, setMessageReceived] = useState("");
+  const [messageReceived, setMessageReceived] = useState<any>({});
   const [room, setRoom] = useState("");
   const [device, setDevice] = useState<IDevice>(initialStateDevice);
 
@@ -25,26 +25,38 @@ export const NewDevice = () => {
       console.error(error);
     } finally {
       // onAction();
-      setDevice(initialStateDevice);
+      // setDevice(initialStateDevice);
     }
   };
 
-  const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("joinRoom", room);
-    }
-  };
+  // const joinRoom = () => {
+  //   if (room !== "") {
+  //     socket.emit("joinRoom", room);
+  //   }
+  // };
 
   const sendMessage = () => {
-    socket.emit("sendMessage", { message, room });
+    socket.emit("sendDevice");
   };
 
   useEffect(() => {
-    socket.on("receiveMessage", (data) => {
-      setMessageReceived(data.message);
+    socket.on("message", (data: any) => {
+      console.log(data);
     });
-  }, [socket]);
+  }, []);
 
+  useEffect(() => {
+    socket.on("test", (data: any) => {
+      console.log(data);
+    });
+
+    socket.on("receiveDevice", (data: any) => {
+      console.log(data);
+      setMessageReceived(data);
+    });
+  }, []);
+
+  console.log(messageReceived);
   return (
     <Container gap="xs" align="center" justify="center" direction="column">
       <h1>Create a device:</h1>
@@ -102,8 +114,9 @@ export const NewDevice = () => {
         backgroundColor={theme.colors.neutral.pure}
         primaryColor={theme.font.colors.white}
         text="Create"
-        onClick={handleSubmit}
+        onClick={sendMessage}
       />
+      <></>
     </Container>
   );
 };
