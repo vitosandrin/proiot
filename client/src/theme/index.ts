@@ -1,0 +1,70 @@
+export const theme = {
+  colors: {
+    types: {
+      water: "#6390F0",
+      ice: "#96D9D6",
+      ghost: "#735797",
+      dragon: "#6F35FC",
+    },
+    background: "#B7B7CE",
+    dark: {
+      pure: "#1e293b",
+      1: "#1A202C",
+      2: "#334155",
+      3: "#475569",
+      4: "#64748b",
+    },
+    light: {
+      pure: "#ffffff",
+      1: "#efeff1",
+      2: "#e5e5e5",
+      3: "#eaeaea",
+      4: "#f2f2f2",
+    },
+    neutral: {
+      pure: "#1e293b",
+      1: "#334155",
+      2: "#475569",
+      3: "#64748b",
+    },
+    feedback: {
+      error: "#cc0000",
+      warning: "#ff8800",
+      success: "#007e33",
+      successhover: "#417957",
+      info: "#0d47a1",
+    },
+  },
+  font: {
+    colors: {
+      1: "#fafafa",
+      2: "#f5f5f5",
+      3: "eeeeee",
+      dark: "#000",
+      white: "#FFF",
+      steel: "#B7B7CE",
+    },
+  },
+  breakpoints: {
+    xsm: "360px",
+    sm: "576px",
+    md: "768px",
+    lg: "992px",
+    xl: "1350px",
+  },
+  transitions: {
+    time: "0.3s",
+    type: "ease",
+  },
+  spacing: {
+    xxxs: "4px",
+    xxs: "8px",
+    xs: "16px",
+    sm: "24px",
+    md: "32px",
+    lg: "40px",
+    xl: "48px",
+    xxl: "56px",
+    xxxl: "64px",
+  },
+};

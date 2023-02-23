@@ -55,7 +55,7 @@ class Devices {
       const device = await this.device.create(req, data);
 
       this.serverSocket.sendMessage("sendDevice", body.socketId, device);
-      
+
       response(res, 201, `OK`, device);
     } catch (error) {
       response(res, 502, "ERROR");
@@ -87,6 +87,8 @@ class Devices {
         return;
       }
 
+      this.serverSocket.sendMessage("sendDevice", "receiveDevice", device);
+      
       response(res, 200, "OK", device);
     } catch (error) {
       response(res, 502, "ERROR");
