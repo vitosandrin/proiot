@@ -16,14 +16,14 @@ class Devices {
     const { params } = req;
 
     if (!Types.ObjectId.isValid(params.id)) {
-      response(res, 422, "ERROR");
+      response(res, 422, "Invalid id!");
       return;
     }
 
     try {
       const device = await this.device.findOne(req, { _id: params.id });
       if (!device) {
-        response(res, 404, "ERROR");
+        response(res, 404, "Not Found!");
         return;
       }
 
@@ -71,7 +71,7 @@ class Devices {
     try {
       const device = await this.device.create(req, data);
 
-      response(res, 201, `OK`, device);
+      response(res, 201, `Created succesfully!`, device);
     } catch (error) {
       response(res, 502, "ERROR");
     }
@@ -91,14 +91,14 @@ class Devices {
     const { params, body } = req;
 
     if (!Types.ObjectId.isValid(params.id)) {
-      response(res, 422, "ERROR");
+      response(res, 422, "Invalid id!");
       return;
     }
 
     const device = await this.device.findOne(req, { _id: params.id });
 
     if (!device) {
-      response(res, 404, "ERROR");
+      response(res, 404, "Not Found!");
       return;
     }
 
@@ -118,7 +118,7 @@ class Devices {
 
     try {
       await this.device.update(req, { _id: params.id }, data);
-      response(res, 200, "OK");
+      response(res, 200, "Updated succesfully!");
     } catch (error) {
       response(res, 502, "ERROR");
     }
@@ -128,21 +128,21 @@ class Devices {
     const { params } = req;
 
     if (!Types.ObjectId.isValid(params.id)) {
-      response(res, 422, "ERROR");
+      response(res, 422, "Invalid id!");
       return;
     }
 
     const device = await this.device.findOne(req, { _id: params.id });
 
     if (!device) {
-      response(res, 404, "ERROR");
+      response(res, 404, "Not found!");
       return;
     }
 
     try {
       await this.device.remove(req, { _id: params.id });
 
-      response(res, 200, "OK");
+      response(res, 200, "Removed succesfully");
     } catch (error) {
       response(res, 502, "ERROR");
     }
