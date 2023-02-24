@@ -13,7 +13,7 @@ Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cli
 
 3 - Abra o terminal no diretorio 'client' e execute o comando `yarn dev`
 
-4 - Abra em seu navegador o link http://localhost:5173/ e você já estará conectado ao WebSocket!
+4 - Abra em seu navegador o link http://localhost:5173/ e você já estará conectado ao servidor HTTP e WebSocket!
 
 ## ✨ Techs
   * Back-end:
