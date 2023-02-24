@@ -27,20 +27,6 @@ export class ServerSocket {
   connect = (socket: Socket) => {
     console.info("Connection received from " + socket.id);
 
-    socket.on("sendAll", (data) => {
-      console.log(data, "from", socket.id);
-      socket.broadcast.emit("receiveAll", data);
-    });
-
-    socket.on("joinRoom", (data) => {
-      socket.join(data);
-    });
-
-    socket.on("sendMessage", (data) => {
-      console.log(data, "from", socket.id);
-      socket.to(data.room).emit("receiveMessage", data);
-    });
-
     socket.on("sendDevice", async (data) => {
       console.log(data, "from", socket.id);
       const device = await DeviceModel.findOne({ _id: data._id });
