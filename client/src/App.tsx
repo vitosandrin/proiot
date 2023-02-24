@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { api } from "./utils/axios";
+import { socket } from "./utils/socket";
+import { IDevice } from "./interfaces/device";
+
 import {
   Button,
   FlexBox,
@@ -9,13 +12,10 @@ import {
   NewDevice,
 } from "./components";
 import { theme } from "./theme";
-import { socket } from "./utils/socket";
-import { IDevice } from "./interfaces/device";
 
 function App() {
   const [devices, setDevices] = useState([]);
   const [modalOpened, setModalOpened] = useState(false);
-  const [devicesReceived, setDevicesReceived] = useState<IDevice[]>();
 
   const getAll = async () => {
     const result = await api.get("/device?limit=50");
@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     socket.on("receiveDevices", (data) => {
       console.log("devices", data);
-      setDevicesReceived(data);
+      setDevices(data);
     });
   }, [socket]);
 
@@ -36,7 +36,7 @@ function App() {
   return (
     <FlexBox gap="xs" align="center" justify="space-around" direction="column">
       <ListDevice
-        devices={devicesReceived ? devicesReceived : devices}
+        devices={devices}
         handleRemoveClick={getAll}
         handleUpdateClick={getAll}
       />
