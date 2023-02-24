@@ -4,18 +4,35 @@ import { DeviceModel } from "./../models/device";
 import { response } from "../utils/response";
 import Service from "./Service";
 import { Types } from "mongoose";
-import { ServerSocket } from "../ws";
-import { server } from "../server";
 
 class Devices {
   public device;
-  public serverSocket;
   constructor() {
     const device = Service(DeviceModel);
-    const serverSocket = new ServerSocket(server);
-    this.serverSocket = serverSocket;
     this.device = device;
   }
+
+  findOne = async (req: Request, res: Response) => {
+    const { params } = req;
+
+    if (!Types.ObjectId.isValid(params.id)) {
+      response(res, 422, "ERROR");
+      return;
+    }
+
+    try {
+      const device = await this.device.findOne(req, { _id: params.id });
+      if (!device) {
+        response(res, 404, "ERROR");
+        return;
+      }
+
+      response(res, 200, "OK", device);
+    } catch (error) {
+      console.log(error);
+      response(res, 502, "ERROR");
+    }
+  };
 
   new = async (req: Request, res: Response) => {
     const { body } = req;
@@ -66,32 +83,6 @@ class Devices {
 
       response(res, 200, "OK", devices);
     } catch (error) {
-      response(res, 502, "ERROR");
-    }
-  };
-
-  findOne = async (req: Request, res: Response) => {
-    const { params } = req;
-
-    if (!Types.ObjectId.isValid(params.id)) {
-      response(res, 422, "ERROR");
-      return;
-    }
-
-    try {
-      const device = await this.device.findOne(req, { _id: params.id });
-      if (!device) {
-        response(res, 404, "ERROR");
-        return;
-      }
-
-      this.serverSocket.sendMessageWs("message", "message", {
-        message: "ok",
-      });
-
-      response(res, 200, "OK", device);
-    } catch (error) {
-      console.log(error);
       response(res, 502, "ERROR");
     }
   };
