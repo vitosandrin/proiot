@@ -8,10 +8,10 @@ dotenv.config();
 const { APP_PORT, APP_HOST } = process.env;
 const app = http.createServer(express);
 
-new ServerSocket(app);
-
 const server = app.listen(APP_PORT, (): void =>
   console.log(`Server Running at http://${APP_HOST}:${APP_PORT}`)
 );
+
+new ServerSocket(server);
 
 export { server };
