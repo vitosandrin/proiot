@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const ResetCss = createGlobalStyle`
   html,
   body {
+    height: 100%;
     animation: fadeIn 0.7s both;
     color: ${({ theme }) => theme.font.colors.dark};
     background-color: ${({ theme }) => theme.colors.background[2]};
