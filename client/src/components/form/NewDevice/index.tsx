@@ -8,10 +8,8 @@ import { api } from "../../../utils/axios";
 import { IDevice, initialStateDevice } from "../../interfaces/device";
 
 export const NewDevice = () => {
-  const [message, setMessage] = useState("");
-  const [messageReceived, setMessageReceived] = useState<any>({});
-  const [room, setRoom] = useState("");
-  const [device, setDevice] = useState<IDevice>(initialStateDevice);
+  const [deviceReceived, setDeviceReceived] = useState<IDevice>();
+  const [device, setDevice] = useState(initialStateDevice);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDevice({ ...device, [e.target.name]: e.target.value });
@@ -20,43 +18,30 @@ export const NewDevice = () => {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      await api.post("/device", device);
+      const response = await api.post("/device", device);
+      socket.emit("sendDevice", { _id: response?.data?.data?._id });
     } catch (error) {
       console.error(error);
     } finally {
-      // onAction();
-      // setDevice(initialStateDevice);
+      setDevice(initialStateDevice);
     }
   };
 
-  // const joinRoom = () => {
-  //   if (room !== "") {
-  //     socket.emit("joinRoom", room);
-  //   }
-  // };
-
   const sendMessage = () => {
-    socket.emit("sendDevice");
+    socket.emit("sendAll", { message: "teste" });
   };
 
   useEffect(() => {
-    socket.on("message", (data: any) => {
-      console.log(data);
-    });
-  }, []);
-
-  useEffect(() => {
-    socket.on("test", (data: any) => {
-      console.log(data);
+    socket.on("receiveAll", (data) => {
+      alert(data.message);
     });
 
-    socket.on("receiveDevice", (data: any) => {
-      console.log(data);
-      setMessageReceived(data);
+    socket.on("receiveDevice", (data) => {
+      console.log("device ", data);
+      setDeviceReceived(data);
     });
-  }, []);
+  }, [socket]);
 
-  console.log(messageReceived);
   return (
     <Container gap="xs" align="center" justify="center" direction="column">
       <h1>Create a device:</h1>
@@ -114,9 +99,17 @@ export const NewDevice = () => {
         backgroundColor={theme.colors.neutral.pure}
         primaryColor={theme.font.colors.white}
         text="Create"
-        onClick={sendMessage}
+        onClick={handleSubmit}
       />
-      <></>
+      <button onClick={sendMessage}>SEND</button>
+      <Container align="center" justify="center" direction="column">
+        <h4>Device Data</h4>
+        <p>Name: {deviceReceived?.name}</p>
+        <p>Description: {deviceReceived?.description!}</p>
+        <p>Sensor Name: {deviceReceived?.sensor?.sensorName}</p>
+        <p>Humidity: {deviceReceived?.sensor?.humidity}</p>
+        <p>Temperature: {deviceReceived?.sensor?.temperature}</p>
+      </Container>
     </Container>
   );
 };
