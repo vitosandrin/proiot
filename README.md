@@ -1,5 +1,9 @@
 # 💻 ProIot Challenge
-Uma aplicação fullstack simples de gerenciamento de dispositivos onde o cliente pode cadastrar seus devices, excluir, alterar suas informações. Toda alteração feita (CREATE, UPDATE, DELETE) feita no sistema é enviada via HTTP e WebSocket para todos os clientes connectados.
+Uma aplicação fullstack simples de gerenciamento de dispositivos onde o cliente pode cadastrar seus devices, excluir e alterar suas informações. Toda alteração feita (CREATE, UPDATE, DELETE) no sistema é enviada via HTTP e WebSocket para todos os clientes conectados.
+
+# 🤹‍♀️ Como rodar o projeto
+`yarn dev`
+
 ## ✨ Techs
   * Back-end:
     -  [ ] NodeJS
