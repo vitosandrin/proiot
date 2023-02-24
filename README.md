@@ -7,11 +7,13 @@ Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cli
 * Collection de 'devices' com registros '/server/devices_collection.json'
 
 # 🤹‍♀️ Como rodar o projeto
-1 - Abra o terminal no diretorio 'server' e execute o comando `yarn dev`
+1 - Abra o terminal no local que deseja clonar o repositório e execute o comando `git clone https://github.com/vitosandrin/proiot.git` 
 
-2 - Abra o terminal no diretorio 'client' e execute o comando `yarn dev`
+2 - Abra o terminal no diretorio 'server' e execute o comando `yarn dev`
 
-3 - Abra em seu navegador o link http://localhost:5173/ e você já estará conectado ao WebSocket!
+3 - Abra o terminal no diretorio 'client' e execute o comando `yarn dev`
+
+4 - Abra em seu navegador o link http://localhost:5173/ e você já estará conectado ao WebSocket!
 
 ## ✨ Techs
   * Back-end:
