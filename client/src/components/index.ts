@@ -3,4 +3,16 @@ import { Input } from "./form/Input";
 import { NewDevice } from "./form/NewDevice";
 import { UpdateDevice } from "./form/UpdateDevice";
 import { ListDevice } from "./layout/ListDevice";
-export { ListDevice, FlexBox, Input, NewDevice, UpdateDevice };
+import { Button } from "./layout/Button";
+import { LastRecord } from "./layout/LastRecord";
+import { Modal } from "./layout/Modal";
+export {
+  ListDevice,
+  LastRecord,
+  FlexBox,
+  Button,
+  Input,
+  NewDevice,
+  UpdateDevice,
+  Modal
+};
