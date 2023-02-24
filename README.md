@@ -2,9 +2,9 @@
 Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cliente pode cadastrar seus dispositivos, excluir e alterar suas informações. Toda requisição feita (CREATE, UPDATE, DELETE) no sistema é enviada via HTTP e WebSocket para todos os clientes conectados.
 
 # 📜 Documentos úteis
-1 - Insomnia JSON com todas as requisições e payloads '/server/insomnia'
+* Insomnia JSON com todas as requisições e payloads '/server/insomnia'
 
-2 - Collection de 'devices' com registros '/server/devices_collection.json'
+* Collection de 'devices' com registros '/server/devices_collection.json'
 
 # 🤹‍♀️ Como rodar o projeto
 1 - Abra o terminal no diretorio 'server' e execute o comando `yarn dev`
