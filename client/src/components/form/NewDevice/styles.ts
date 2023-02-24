@@ -8,4 +8,8 @@ export const Container = styled(FlexBox)`
   border-radius: 0.3rem;
   background-color: ${({ theme }) => theme.colors.background};
 `;
+
+export const ContainerData = styled(FlexBox)`
+  width: 300px;
+`;
 export const Form = styled(FlexBox)``;

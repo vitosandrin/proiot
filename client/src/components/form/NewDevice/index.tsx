@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Input } from "../Input";
-import { Container, Form } from "./styles";
+import { Container, Form, ContainerData } from "./styles";
 import { socket } from "../../../utils/socket";
 import { Button } from "../../layout/Button";
 import { theme } from "../../../theme";
 import { api } from "../../../utils/axios";
-import { IDevice, initialStateDevice } from "../../interfaces/device";
+import { IDevice, initialStateDevice } from "../../../interfaces/device";
 
-export const NewDevice = () => {
+export const NewDevice = ({ onAction }: { onAction: () => void }) => {
   const [deviceReceived, setDeviceReceived] = useState<IDevice>();
   const [device, setDevice] = useState(initialStateDevice);
 
@@ -23,6 +23,7 @@ export const NewDevice = () => {
     } catch (error) {
       console.error(error);
     } finally {
+      onAction()
       setDevice(initialStateDevice);
     }
   };
@@ -101,15 +102,16 @@ export const NewDevice = () => {
         text="Create"
         onClick={handleSubmit}
       />
-      <button onClick={sendMessage}>SEND</button>
-      <Container align="center" justify="center" direction="column">
-        <h4>Device Data</h4>
-        <p>Name: {deviceReceived?.name}</p>
-        <p>Description: {deviceReceived?.description!}</p>
-        <p>Sensor Name: {deviceReceived?.sensor?.sensorName}</p>
-        <p>Humidity: {deviceReceived?.sensor?.humidity}</p>
-        <p>Temperature: {deviceReceived?.sensor?.temperature}</p>
-      </Container>
+      {deviceReceived && (
+        <ContainerData align="center" justify="center" direction="column">
+          <h2>Last Record:</h2>
+          <p>Name: {deviceReceived?.name}</p>
+          <p>Description: {deviceReceived?.description!}</p>
+          <p>Sensor Name: {deviceReceived?.sensor?.sensorName}</p>
+          <p>Humidity: {deviceReceived?.sensor?.humidity}</p>
+          <p>Temperature: {deviceReceived?.sensor?.temperature}</p>
+        </ContainerData>
+      )}
     </Container>
   );
 };
