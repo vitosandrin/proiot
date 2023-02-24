@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Input } from "../Input";
-import { Container, Form, ContainerData } from "./styles";
+import { Container, Form } from "./styles";
 import { socket } from "../../../utils/socket";
 import { Button } from "../../layout/Button";
 import { theme } from "../../../theme";
@@ -8,7 +8,6 @@ import { api } from "../../../utils/axios";
 import { IDevice, initialStateDevice } from "../../../interfaces/device";
 
 export const NewDevice = ({ onAction }: { onAction: () => void }) => {
-  const [deviceReceived, setDeviceReceived] = useState<IDevice>();
   const [device, setDevice] = useState(initialStateDevice);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +19,7 @@ export const NewDevice = ({ onAction }: { onAction: () => void }) => {
     try {
       const response = await api.post("/device", device);
       socket.emit("sendDevice", { _id: response?.data?.data?._id });
+      socket.emit("sendDevices");
     } catch (error) {
       console.error(error);
     } finally {
@@ -27,21 +27,6 @@ export const NewDevice = ({ onAction }: { onAction: () => void }) => {
       setDevice(initialStateDevice);
     }
   };
-
-  const sendMessage = () => {
-    socket.emit("sendAll", { message: "teste" });
-  };
-
-  useEffect(() => {
-    socket.on("receiveAll", (data) => {
-      alert(data.message);
-    });
-
-    socket.on("receiveDevice", (data) => {
-      console.log("device ", data);
-      setDeviceReceived(data);
-    });
-  }, [socket]);
 
   return (
     <Container gap="xs" align="center" justify="center" direction="column">
@@ -102,16 +87,7 @@ export const NewDevice = ({ onAction }: { onAction: () => void }) => {
         text="Create"
         onClick={handleSubmit}
       />
-      {deviceReceived && (
-        <ContainerData align="center" justify="center" direction="column">
-          <h2>Last Record:</h2>
-          <p>Name: {deviceReceived?.name}</p>
-          <p>Description: {deviceReceived?.description!}</p>
-          <p>Sensor Name: {deviceReceived?.sensor?.sensorName}</p>
-          <p>Humidity: {deviceReceived?.sensor?.humidity}</p>
-          <p>Temperature: {deviceReceived?.sensor?.temperature}</p>
-        </ContainerData>
-      )}
+      
     </Container>
   );
 };

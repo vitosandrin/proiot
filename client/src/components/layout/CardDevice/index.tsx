@@ -6,6 +6,7 @@ import { Button } from "../Button";
 import { Modal } from "../Modal";
 import { Container } from "./styles";
 import { useState } from "react";
+import { socket } from "../../../utils/socket";
 interface ICardDeviceProps {
   data: IDevice;
   index: number;
@@ -28,7 +29,7 @@ export const CardDevice = ({
       console.log(error);
     } finally {
       handleRemoveClick();
-      console.log("ok");
+      socket.emit("sendDevices");
     }
   };
 

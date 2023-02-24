@@ -29,8 +29,9 @@ export const UpdateDevice = ({
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      const response = await api.post("/device", device);
-      socket.emit("sendDevice", { _id: response?.data?.data?._id });
+      await api.patch(`/device/${deviceId}`, device);
+      socket.emit("sendDevice", { _id: deviceId });
+      socket.emit("sendDevices");
     } catch (error) {
       console.error(error);
     } finally {
@@ -39,24 +40,9 @@ export const UpdateDevice = ({
     }
   };
 
-  const sendMessage = () => {
-    socket.emit("sendAll", { message: "teste" });
-  };
-
   useEffect(() => {
     getOne();
   }, [deviceId]);
-
-  useEffect(() => {
-    socket.on("receiveAll", (data) => {
-      alert(data.message);
-    });
-
-    socket.on("receiveDevice", (data) => {
-      console.log("device ", data);
-      setDeviceReceived(data);
-    });
-  }, [socket]);
 
   return (
     <Container gap="xs" align="center" justify="center" direction="column">
@@ -117,16 +103,6 @@ export const UpdateDevice = ({
         text="Update"
         onClick={handleSubmit}
       />
-      {deviceReceived && (
-        <ContainerData align="center" justify="center" direction="column">
-          <h2>Last Record:</h2>
-          <p>Name: {deviceReceived?.name}</p>
-          <p>Description: {deviceReceived?.description!}</p>
-          <p>Sensor Name: {deviceReceived?.sensor?.sensorName}</p>
-          <p>Humidity: {deviceReceived?.sensor?.humidity}</p>
-          <p>Temperature: {deviceReceived?.sensor?.temperature}</p>
-        </ContainerData>
-      )}
     </Container>
   );
 };
