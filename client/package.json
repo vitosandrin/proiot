@@ -2,9 +2,11 @@
   "name": "proiot",
   "private": true,
   "version": "0.0.0",
+  "repository": "https://github.com/vitosandrin/proiot.git",
+  "author": "Vito Sandrin <sandrinvito10@gmail.com>",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "yarn && vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
