@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Input } from "../Input";
 import { Container, Form } from "./styles";
 import { socket } from "../../../utils/socket";
-import { Button } from "../../layout/Button";
+import { Button, Input } from "../../../components";
 import { theme } from "../../../theme";
 import { api } from "../../../utils/axios";
-import { IDevice, initialStateDevice } from "../../../interfaces/device";
+import { initialStateDevice } from "../../../interfaces/device";
 
 export const NewDevice = ({ onAction }: { onAction: () => void }) => {
   const [device, setDevice] = useState(initialStateDevice);
@@ -22,7 +21,7 @@ export const NewDevice = ({ onAction }: { onAction: () => void }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      onAction()
+      onAction();
       socket.emit("sendDevices");
       setDevice(initialStateDevice);
     }
@@ -87,7 +86,6 @@ export const NewDevice = ({ onAction }: { onAction: () => void }) => {
         text="Create"
         onClick={handleSubmit}
       />
-      
     </Container>
   );
 };

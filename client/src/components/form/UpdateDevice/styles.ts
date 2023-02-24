@@ -9,7 +9,4 @@ export const Container = styled(FlexBox)`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const ContainerData = styled(FlexBox)`
-  width: 300px;
-`;
 export const Form = styled(FlexBox)``;

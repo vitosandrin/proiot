@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Input } from "../Input";
-import { Container, Form, ContainerData } from "./styles";
+import { Container, Form } from "./styles";
 import { socket } from "../../../utils/socket";
 import { Button } from "../../layout/Button";
 import { theme } from "../../../theme";
 import { api } from "../../../utils/axios";
-import { IDevice, initialStateDevice } from "../../../interfaces/device";
+import { IDevice } from "../../../interfaces/device";
 
 export const UpdateDevice = ({
   onAction,

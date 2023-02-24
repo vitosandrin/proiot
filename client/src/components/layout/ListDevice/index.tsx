@@ -14,9 +14,9 @@ export const ListDevice = ({
   return (
     <Container gap="xs" align="center" justify="center" direction="row">
       {devices.length > 0 ? (
-        devices.map((data, index) => (
+        devices.map((data) => (
           <CardDevice
-            index={index}
+            key={data._id}
             data={data}
             handleUpdateClick={handleUpdateClick}
             handleRemoveClick={handleRemoveClick}

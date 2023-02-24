@@ -1,4 +1,5 @@
 import { FlexBox } from "./utils/Flexbox";
+import { Portal } from "./utils/Portal";
 import { Input } from "./form/Input";
 import { NewDevice } from "./form/NewDevice";
 import { UpdateDevice } from "./form/UpdateDevice";
@@ -14,5 +15,6 @@ export {
   Input,
   NewDevice,
   UpdateDevice,
-  Modal
+  Modal,
+  Portal
 };

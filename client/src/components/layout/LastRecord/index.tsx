@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { FlexBox } from "../../utils/Flexbox";
-import { socket } from "../../../utils/socket";
 import { IDevice } from "../../../interfaces/device";
 
+import { FlexBox } from "../../../components";
+import { socket } from "../../../utils/socket";
+
+const ContainerData = styled(FlexBox)`
+  padding: 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.types.dragon};
+`;
 export const LastRecord = () => {
   const [deviceReceived, setDeviceReceived] = useState<IDevice>();
-
-  const ContainerData = styled(FlexBox)`
-    padding: 1rem;
-    border: 1px solid ${({ theme }) => theme.colors.types.dragon};
-  `;
 
   useEffect(() => {
     socket.on("receiveAll", (data) => {
@@ -21,7 +21,6 @@ export const LastRecord = () => {
       console.log("device ", data);
       setDeviceReceived(data);
     });
-
   }, [socket]);
   return (
     <>

@@ -25,13 +25,11 @@ export class ServerSocket {
     console.info("Connection received from ", socket.id);
 
     socket.on("sendDevice", async (data) => {
-      console.log(data, "from", socket.id);
       const device = await DeviceModel.findOne({ _id: data._id });
       socket.broadcast.emit("receiveDevice", device);
     });
 
     socket.on("sendDevices", async (data) => {
-      console.log(data, "from", socket.id);
       const devices = await DeviceModel.find();
       socket.broadcast.emit("receiveDevices", devices);
 

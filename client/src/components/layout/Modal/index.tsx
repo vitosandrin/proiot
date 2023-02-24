@@ -1,5 +1,5 @@
 import { useEffect, FC, KeyboardEvent } from "react";
-import Portal from "../../utils/Portal";
+import { Portal } from "../../../components";
 import { CloseModal, Content, Overlay } from "./styles";
 interface IModalProps {
   open: any;

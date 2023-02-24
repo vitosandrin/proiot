@@ -1,22 +1,20 @@
-import { IDevice } from "../../../interfaces/device";
-import { theme } from "../../../theme";
-import { api } from "../../../utils/axios";
-import { UpdateDevice } from "../../form/UpdateDevice";
-import { Button } from "../Button";
-import { Modal } from "../Modal";
-import { Container } from "./styles";
 import { useState } from "react";
 import { socket } from "../../../utils/socket";
+import { api } from "../../../utils/axios";
+
+import { IDevice } from "../../../interfaces/device";
+import { theme } from "../../../theme";
+
+import { UpdateDevice, Button, Modal } from "../../../components";
+import { Container } from "./styles";
 interface ICardDeviceProps {
   data: IDevice;
-  index: number;
   handleUpdateClick: () => void;
   handleRemoveClick: () => void;
 }
 
 export const CardDevice = ({
   data,
-  index,
   handleRemoveClick,
   handleUpdateClick,
 }: ICardDeviceProps) => {
@@ -35,7 +33,6 @@ export const CardDevice = ({
 
   return (
     <Container
-      key={index}
       gap="xs"
       align="center"
       justify="flex-start"
