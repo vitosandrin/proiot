@@ -1,0 +1,4 @@
+{"_id":{"$oid":"63f84c8a10110654c6bb25c9"},"name":"Smartwatch","description":"simple smart watch with many features","sensor":{"sensorName":"Motion sensor","temperature":"120ºC","humidity":"248%"},"__v":0}
+{"_id":{"$oid":"63f84cf210110654c6bb25ce"},"name":"Drone","description":"A flying drone that records in 4K","sensor":{"sensorName":"Presence sensor","temperature":"86ºC","humidity":"-27%"},"__v":0}
+{"_id":{"$oid":"63f84d5110110654c6bb25d3"},"name":"SmartHome","description":"Customizable commands and events","sensor":{"sensorName":"Motion sensor / Presence sensor","temperature":"57ºC","humidity":"98%"},"__v":0}
+{"_id":{"$oid":"63f84d9710110654c6bb25d8"},"name":"Smart Car","description":"Smart electric car","sensor":{"sensorName":"Motion sensor / Presence sensor","temperature":"67ºC","humidity":"243%"},"__v":0}
