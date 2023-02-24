@@ -1,5 +1,5 @@
 # 💻 ProIot Challenge
-Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cliente pode cadastrar seus devices, excluir e alterar suas informações. Toda alteração feita (CREATE, UPDATE, DELETE) no sistema é enviada via HTTP e WebSocket para todos os clientes conectados.
+Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cliente pode cadastrar seus dispositivos, excluir e alterar suas informações. Toda requisição feita (CREATE, UPDATE, DELETE) no sistema é enviada via HTTP e WebSocket para todos os clientes conectados.
 
 # 📜 Documentos úteis
 1 - Insomnia JSON com todas as requisições e payloads '/server/insomnia'
