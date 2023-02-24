@@ -14,7 +14,6 @@ export const UpdateDevice = ({
   onAction: () => void;
   deviceId: string | null;
 }) => {
-  const [deviceReceived, setDeviceReceived] = useState<IDevice>();
   const [device, setDevice] = useState<IDevice>();
 
   const getOne = async () => {
@@ -31,12 +30,11 @@ export const UpdateDevice = ({
     try {
       await api.patch(`/device/${deviceId}`, device);
       socket.emit("sendDevice", { _id: deviceId });
-      socket.emit("sendDevices");
     } catch (error) {
       console.error(error);
     } finally {
       onAction();
-      setDevice(initialStateDevice);
+      socket.emit("sendDevices");
     }
   };
 

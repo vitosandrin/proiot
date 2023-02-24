@@ -19,11 +19,11 @@ export const NewDevice = ({ onAction }: { onAction: () => void }) => {
     try {
       const response = await api.post("/device", device);
       socket.emit("sendDevice", { _id: response?.data?.data?._id });
-      socket.emit("sendDevices");
     } catch (error) {
       console.error(error);
     } finally {
       onAction()
+      socket.emit("sendDevices");
       setDevice(initialStateDevice);
     }
   };
