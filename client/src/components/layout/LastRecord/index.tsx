@@ -13,12 +13,7 @@ export const LastRecord = () => {
   const [deviceReceived, setDeviceReceived] = useState<IDevice>();
 
   useEffect(() => {
-    socket.on("receiveAll", (data) => {
-      alert(data.message);
-    });
-
     socket.on("receiveDevice", (data) => {
-      console.log("device ", data);
       setDeviceReceived(data);
     });
   }, [socket]);

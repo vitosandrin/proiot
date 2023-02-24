@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     socket.on("receiveDevices", (data) => {
-      console.log("devices", data);
       setDevices(data);
     });
   }, [socket]);
@@ -49,7 +48,7 @@ function App() {
       />
       <LastRecord />
       <Modal open={modalOpened} onClose={() => setModalOpened(false)}>
-        <NewDevice onAction={getAll} />
+        <NewDevice handleCreateClick={getAll} />
       </Modal>
     </FlexBox>
   );

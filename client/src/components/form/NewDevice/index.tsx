@@ -6,7 +6,11 @@ import { theme } from "../../../theme";
 import { api } from "../../../utils/axios";
 import { initialStateDevice } from "../../../interfaces/device";
 
-export const NewDevice = ({ onAction }: { onAction: () => void }) => {
+export const NewDevice = ({
+  handleCreateClick,
+}: {
+  handleCreateClick: () => void;
+}) => {
   const [device, setDevice] = useState(initialStateDevice);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +25,7 @@ export const NewDevice = ({ onAction }: { onAction: () => void }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      onAction();
+      handleCreateClick();
       socket.emit("sendDevices");
       setDevice(initialStateDevice);
     }
