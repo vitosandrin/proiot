@@ -18,9 +18,6 @@ export const Content = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1.5rem;
-  min-width: 40%;
-  width: 60%;
-  max-width: 80%;
   z-index: 1000;
   background-color: ${({ theme }) => theme?.colors?.light?.pure};
   font-size: 1rem;
