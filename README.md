@@ -1,8 +1,15 @@
 # 💻 ProIot Challenge
 Uma aplicação fullstack simples de gerenciamento de dispositivos onde o cliente pode cadastrar seus devices, excluir e alterar suas informações. Toda alteração feita (CREATE, UPDATE, DELETE) no sistema é enviada via HTTP e WebSocket para todos os clientes conectados.
 
+# 📜 Documentos úteis
+1 - Insomnia JSON com todas as requisições e payloads '/server/insomnia'
+
+2 - Collection de 'devices' com registros '/server/devices_collection.json'
+
 # 🤹‍♀️ Como rodar o projeto
-`yarn dev`
+1 - Abra o terminal no diretorio 'server' e execute o comando `yarn dev`
+
+2 - Abra o terminal no diretorio 'client' e execute o comando `yarn dev`
 
 ## ✨ Techs
   * Back-end:
@@ -24,12 +31,16 @@ Uma aplicação fullstack simples de gerenciamento de dispositivos onde o client
 <hr />
 
 ## 1 - Backend
-- Rotas de cadastro, login, exclusão e atualização do usuário.
-- Rota de criação de projetos do usuário, passando o nome do projeto e descrição do projeto.
-- Rota de criação de tarefas do usuário, passando o nome da tarefa, descrição da tarefa e status da tarefa.
-- Rota de atualização de tarefa do usuário através do id da tarefa.
-- Rota de atualização do projeto do usuário através do id do projeto.
-- 
+- [ ] Get All Devices - `GET /device`
+
+- [ ] Create Device - `POST /device`
+
+- [ ] Get One Device - `GET /device/:deviceId`
+
+- [ ] Update Device - `PATCH /device/:deviceId`
+
+- [ ] Remove Device - `DELETE /device/:deviceId`
+
     ## 1.1 - Banco de dados
     - Collection de dispositivo (device):
         - name
