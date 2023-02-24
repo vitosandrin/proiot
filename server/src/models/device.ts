@@ -7,6 +7,7 @@ const schema = new Schema<IDevice>(
       type: String,
       required: true,
     },
+    description: { type: String, required: true },
     sensor: {
       sensorName: { type: String, required: true },
       temperature: {
