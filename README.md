@@ -30,7 +30,7 @@ Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cli
     
 <hr />
 
-## 1 - Backend
+## 🕹 Rotas
 - [ ] Get All Devices - `GET /device`
 
 - [ ] Create Device - `POST /device`
@@ -41,13 +41,13 @@ Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cli
 
 - [ ] Remove Device - `DELETE /device/:deviceId`
 
-    ## 1.1 - Banco de dados
-    - Collection de dispositivo (device):
-        - name
-        - description
-        - sensorName
-        - temperature
-        - humidity
+## 💾 Banco de dados
+- [ ] Collection de dispositivo (device):
+   - name
+   - description
+   - sensorName
+   - temperature
+   - humidity
     
      
     
