@@ -1,3 +1,4 @@
+import { IDevice, IDeviceInfo } from "./../interfaces/device";
 import { Request, Response } from "express";
 import { serverSocket } from "../server";
 
@@ -29,8 +30,6 @@ class Devices {
         return;
       }
 
-      serverSocket.sendMessageWs("receiveDevice", device);
-
       response(res, 200, "OK", device);
     } catch (error) {
       console.log(error);
@@ -45,36 +44,23 @@ class Devices {
       response(res, 422, "Inform the name of device");
       return;
     }
-    if (!body.description) {
-      response(res, 422, "Inform a short description of device");
-      return;
-    }
-    if (!body.sensorName) {
-      response(res, 422, "Inform the sensor name of device");
-      return;
-    }
-    if (!body.temperature) {
-      response(res, 422, "Inform the temperature of sensor");
-      return;
-    }
-    if (!body.humidity) {
-      response(res, 422, "Inform the humidity of sensor");
-      return;
-    }
 
-    const data = {
-      name: body.name,
-      description: body.description,
-      sensor: {
-        sensorName: body.sensorName,
-        temperature: `${body.temperature}ºC`,
-        humidity: `${body.humidity}%`,
-      },
-    };
+    let infoMapped: IDeviceInfo[] = [];
+    for (let i = 0; i < body.info.length; i++) {
+      const type = body.info[i].type;
+      const unit = body.info[i].unit;
+      const value = body.info[i].value;
+      const obj = { type, value, unit };
+      infoMapped.push(obj);
+    }
 
     try {
-      const device = await this.device.create(req, data);
+      const data = {
+        name: body.name,
+        info: infoMapped,
+      };
 
+      const device = await this.device.create(req, data);
       serverSocket.sendMessageWs("receiveDevice", device);
 
       response(res, 201, `Created succesfully!`, device);
@@ -108,29 +94,29 @@ class Devices {
       return;
     }
 
-    const data = {
-      name: body.name ? body.name : device.name,
-      description: body.description ? body.description : device.description,
-      sensor: {
-        sensorName: body.sensorName
-          ? body.sensorName
-          : device.sensor.sensorName,
-        temperature: body.temperature
-          ? `${body.temperature}ºC`
-          : device.sensor.temperature,
-        humidity: body.humidity ? `${body.humidity}%` : device.sensor.humidity,
-      },
-    };
-
     try {
-      await this.device.update(req, { _id: params.id }, data);
+      if (body.name) {
+        await this.device.update(req, { _id: params.id }, { name: body.name });
+      }
+
+      if (body?.info?.length! > 0) {
+        for (let i of body.info) {
+          await this.device.updatePath(
+            req,
+            { _id: params.id },
+            `info._id:${i._id}`,
+            { type: i.type, unit: i.unit, value: i.value }
+          );
+        }
+      }
 
       const device = await this.device.findOne(req, { _id: params.id });
 
       serverSocket.sendMessageWs("receiveDevice", device);
 
-      response(res, 200, "Updated succesfully!");
+      response(res, 200, "Updated succesfully!", device);
     } catch (error) {
+      console.log(error)
       response(res, 502, "ERROR");
     }
   };
