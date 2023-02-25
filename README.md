@@ -1,15 +1,19 @@
 # 💻 ProIot Challenge
-Uma aplicação fullstack simples de gerenciamento de dispositivos onde o cliente pode cadastrar seus devices, excluir e alterar suas informações. Toda alteração feita (CREATE, UPDATE, DELETE) no sistema é enviada via HTTP e WebSocket para todos os clientes conectados.
+Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cliente pode cadastrar seus dispositivos, excluir e alterar suas informações. Toda requisição feita (CREATE, UPDATE, DELETE) no sistema é enviada via HTTP e WebSocket para todos os clientes conectados.
 
 # 📜 Documentos úteis
-1 - Insomnia JSON com todas as requisições e payloads '/server/insomnia'
+* Insomnia JSON com todas as requisições e payloads '/server/insomnia'
 
-2 - Collection de 'devices' com registros '/server/devices_collection.json'
+* Collection de 'devices' com registros '/server/devices_collection.json'
 
 # 🤹‍♀️ Como rodar o projeto
-1 - Abra o terminal no diretorio 'server' e execute o comando `yarn dev`
+1 - Abra o terminal no local que deseja clonar o repositório e execute o comando `git clone https://github.com/vitosandrin/proiot.git` 
 
-2 - Abra o terminal no diretorio 'client' e execute o comando `yarn dev`
+2 - Abra o terminal no diretorio 'server' e execute o comando `yarn dev`
+
+3 - Abra o terminal no diretorio 'client' e execute o comando `yarn dev`
+
+4 - Abra em seu navegador o link http://localhost:5173/ e você já estará conectado ao servidor HTTP e WebSocket!
 
 ## ✨ Techs
   * Back-end:
@@ -30,7 +34,7 @@ Uma aplicação fullstack simples de gerenciamento de dispositivos onde o client
     
 <hr />
 
-## 1 - Backend
+## 🕹 Rotas
 - [ ] Get All Devices - `GET /device`
 
 - [ ] Create Device - `POST /device`
@@ -41,13 +45,13 @@ Uma aplicação fullstack simples de gerenciamento de dispositivos onde o client
 
 - [ ] Remove Device - `DELETE /device/:deviceId`
 
-    ## 1.1 - Banco de dados
-    - Collection de dispositivo (device):
-        - name
-        - description
-        - sensorName
-        - temperature
-        - humidity
+## 💾 Banco de dados
+- [ ] Collection de dispositivo (device):
+   - name
+   - description
+   - sensorName
+   - temperature
+   - humidity
     
      
     
