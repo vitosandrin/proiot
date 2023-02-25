@@ -1,5 +1,9 @@
 import { Model } from "mongoose";
-import { removeUndefined } from "../utils/object";
+import {
+  getItemFromPath,
+  removeUndefined,
+  updateItemFromPath,
+} from "../utils/object";
 import {
   IFindAllOptions,
   IFindAllResponse,
@@ -8,6 +12,8 @@ import {
 import { IDevice } from "../interfaces/device";
 
 export default (model: Model<IDevice>) => {
+  const toObject = (data: any) => JSON.parse(JSON.stringify(data));
+
   const create = (req = {}, data = {}) => {
     return model.create(removeUndefined(data));
   };
@@ -75,11 +81,32 @@ export default (model: Model<IDevice>) => {
     return model.updateOne(query, removeUndefined(data));
   };
 
+  const findOnePath = async (req = {}, query = {}, path = "") => {
+    const document = await findOne(req, query);
+    return getItemFromPath(document, path);
+  };
+
+  const updatePath = async (req = {}, query = {}, path = "", data = {}) => {
+    const document = await findOne(req, query);
+
+    const updatedDocument = updateItemFromPath(
+      toObject(document),
+      path,
+      removeUndefined(data)
+    );
+
+    await update(req, query, updatedDocument);
+
+    return findOnePath(req, query, path);
+  };
+
   return {
     create,
     findOne,
     findAll,
     remove,
     update,
+
+    updatePath
   };
 };
