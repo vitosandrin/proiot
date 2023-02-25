@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { serverSocket } from "../server";
+
 import { DeviceModel } from "./../models/device";
 
 import { response } from "../utils/response";
@@ -26,6 +28,8 @@ class Devices {
         response(res, 404, "Not Found!");
         return;
       }
+
+      serverSocket.sendMessageWs("receiveDevice", device);
 
       response(res, 200, "OK", device);
     } catch (error) {
@@ -70,6 +74,8 @@ class Devices {
 
     try {
       const device = await this.device.create(req, data);
+
+      serverSocket.sendMessageWs("receiveDevice", device);
 
       response(res, 201, `Created succesfully!`, device);
     } catch (error) {
@@ -118,6 +124,11 @@ class Devices {
 
     try {
       await this.device.update(req, { _id: params.id }, data);
+
+      const device = await this.device.findOne(req, { _id: params.id });
+
+      serverSocket.sendMessageWs("receiveDevice", device);
+
       response(res, 200, "Updated succesfully!");
     } catch (error) {
       response(res, 502, "ERROR");

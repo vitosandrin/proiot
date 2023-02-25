@@ -12,6 +12,6 @@ const server = app.listen(APP_PORT, (): void =>
   console.log(`Server Running at http://${APP_HOST}:${APP_PORT}`)
 );
 
-new ServerSocket(server);
+const serverSocket = new ServerSocket(server);
 
-export { server };
+export { server, serverSocket };

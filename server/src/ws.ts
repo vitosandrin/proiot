@@ -24,18 +24,17 @@ export class ServerSocket {
   connect = (socket: Socket) => {
     console.info("Connection received from ", socket.id);
 
-    socket.on("sendDevice", async (data) => {
-      const device = await DeviceModel.findOne({ _id: data._id });
-      socket.broadcast.emit("receiveDevice", device);
-    });
-
-    socket.on("sendDevices", async (data) => {
+    socket.on("sendDevices", async () => {
       const devices = await DeviceModel.find();
       socket.broadcast.emit("receiveDevices", devices);
+    });
 
-    })
     socket.on("disconnect", () => {
       console.info("Disconnect received from: ", socket.id);
     });
+  };
+
+  sendMessageWs = (event: string, data: Object) => {
+    this.io.emit(event, data);
   };
 }
