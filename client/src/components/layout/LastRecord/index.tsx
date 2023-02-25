@@ -17,6 +17,7 @@ export const LastRecord = () => {
       setDeviceReceived(data);
     });
   }, [socket]);
+
   return (
     <>
       <h2>Last Socket Record:</h2>

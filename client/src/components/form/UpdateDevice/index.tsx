@@ -29,7 +29,6 @@ export const UpdateDevice = ({
     e.preventDefault();
     try {
       await api.patch(`/device/${deviceId}`, device);
-      socket.emit("sendDevice", { _id: deviceId });
     } catch (error) {
       console.error(error);
     } finally {

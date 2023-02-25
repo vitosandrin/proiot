@@ -20,8 +20,7 @@ export const NewDevice = ({
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      const response = await api.post("/device", device);
-      socket.emit("sendDevice", { _id: response?.data?.data?._id });
+      await api.post("/device", device);
     } catch (error) {
       console.error(error);
     } finally {
