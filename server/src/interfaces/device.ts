@@ -1,4 +1,3 @@
-import { Types } from "mongoose";
 export interface IDeviceInfo {
   _id?: string;
   type: string;
@@ -6,7 +5,7 @@ export interface IDeviceInfo {
   unit: string;
 }
 
-export interface IDevice extends Document {
+export interface IDevice{
   _id?: string;
   name: string;
   info: IDeviceInfo[];
