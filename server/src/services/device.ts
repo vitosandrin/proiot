@@ -46,7 +46,7 @@ class Devices {
     }
 
     let infoMapped: IDeviceInfo[] = [];
-    for (let i = 0; i < body.info.length; i++) {
+    for (let i = 0; i < body?.info?.length; i++) {
       const type = body.info[i].type;
       const unit = body.info[i].unit;
       const value = body.info[i].value;
@@ -116,7 +116,7 @@ class Devices {
 
       response(res, 200, "Updated succesfully!", device);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       response(res, 502, "ERROR");
     }
   };

@@ -11,13 +11,3 @@ export interface IDevice extends Document {
   name: string;
   info: IDeviceInfo[];
 }
-// export interface IDevice {
-//   _id?: Types.ObjectId;
-//   name: string;
-//   description: string;
-//   sensor: {
-//     sensorName: string;
-//     temperature: string;
-//     humidity: string;
-//   };
-// }
