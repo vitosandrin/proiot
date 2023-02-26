@@ -25,10 +25,11 @@ export const LastRecord = () => {
       {deviceReceived && (
         <ContainerData align="center" justify="center" direction="column">
           <p>Name: {deviceReceived?.name}</p>
-          <p>Description: {deviceReceived?.description!}</p>
-          <p>Sensor Name: {deviceReceived?.sensor?.sensorName}</p>
-          <p>Humidity: {deviceReceived?.sensor?.humidity}</p>
-          <p>Temperature: {deviceReceived?.sensor?.temperature}</p>
+          {deviceReceived?.info?.map((item) => (
+            <p>
+              {item.type}: {item.value + item.unit}
+            </p>
+          ))}
         </ContainerData>
       )}
     </>

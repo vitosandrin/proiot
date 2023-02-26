@@ -16,21 +16,14 @@ export const Content = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  width: auto;
+  height: auto;
   transform: translate(-50%, -50%);
   padding: 1.5rem;
   z-index: 1000;
   background-color: ${({ theme }) => theme?.colors?.light?.pure};
   font-size: 1rem;
   border-radius: 2rem;
-  @media (max-width: ${({ theme }) => theme?.breakpoints?.md}) {
-    width: 50%;
-  }
-  @media (max-width: ${({ theme }) => theme?.breakpoints?.sm}) {
-    width: 85%;
-  }
-  @media (max-width: ${({ theme }) => theme?.breakpoints?.xsm}) {
-    width: 95%;
-  }
 `;
 
 export const CloseModal = styled(FaTimes)`

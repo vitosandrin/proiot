@@ -1,19 +1,13 @@
-export interface IDevice {
+export interface IDeviceInfo {
   _id?: string;
-  name?: string;
-  description?: string;
-  sensor?: {
-    sensorName?: string;
-    temperature?: string;
-    humidity?: string;
-  };
+  type: string;
+  value: number;
+  unit: string;
 }
 
-export const initialStateDevice = {
-  _id: "",
-  name: "",
-  description: "",
-  sensorName: "",
-  temperature: 0,
-  humidity: 0,
-};
+export interface IDevice {
+  _id?: string;
+  name: string;
+  info: IDeviceInfo[];
+}
+

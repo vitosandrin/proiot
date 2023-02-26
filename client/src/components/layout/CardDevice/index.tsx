@@ -32,18 +32,14 @@ export const CardDevice = ({
   };
 
   return (
-    <Container
-      gap="xs"
-      align="center"
-      justify="flex-start"
-      direction="column"
-    >
+    <Container gap="xs" align="center" justify="flex-start" direction="column">
       <h2>Device Data:</h2>
       <p>Name: {data?.name}</p>
-      <p>Description: {data?.description!}</p>
-      <p>Sensor Name: {data?.sensor?.sensorName}</p>
-      <p>Humidity: {data?.sensor?.humidity}</p>
-      <p>Temperature: {data?.sensor?.temperature}</p>
+      {data?.info?.map((item) => (
+        <p>
+          {item.type}: {item.value + item.unit}
+        </p>
+      ))}
       <Button
         hoverColor={theme.colors.neutral[1]}
         backgroundColor={theme.colors.neutral.pure}
