@@ -10,4 +10,3 @@ export interface IDevice {
   name: string;
   info: IDeviceInfo[];
 }
-

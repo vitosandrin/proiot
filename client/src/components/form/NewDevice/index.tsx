@@ -12,7 +12,7 @@ export const NewDevice = ({
 }: {
   handleCreateClick: () => void;
 }) => {
-  const [device, setDevice] = useState<IDevice | undefined>(undefined);
+  const [device, setDevice] = useState<IDevice>({ name: "", info: [] });
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -23,14 +23,14 @@ export const NewDevice = ({
     } finally {
       handleCreateClick();
       socket.emit("sendDevices");
-      setDevice(undefined);
+      setDevice({ name: "", info: [] });
     }
   };
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    setDevice((prevState: any) => {
+    setDevice((prevState: IDevice) => {
       const newInfo = prevState.info ? [...prevState.info] : [];
       newInfo[index] = {
         ...newInfo[index],
@@ -41,7 +41,7 @@ export const NewDevice = ({
   };
 
   const handleAddForm = () => {
-    setDevice((prevState: any) => {
+    setDevice((prevState: IDevice) => {
       const newInfo = prevState?.info ? [...prevState.info] : [];
       newInfo.push({ type: "", value: 0, unit: "" });
       return { ...prevState, info: newInfo };
@@ -128,7 +128,7 @@ export const NewDevice = ({
           name="name"
           value={device?.name || ""}
           handleOnChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setDevice((prevDevice: any) => ({
+            setDevice((prevDevice: IDevice) => ({
               ...prevDevice!,
               name: e.target.value,
             }))

@@ -15,7 +15,7 @@ export const UpdateDevice = ({
   onAction: () => void;
   deviceId: string | null;
 }) => {
-  const [device, setDevice] = useState<IDevice | undefined>(undefined);
+  const [device, setDevice] = useState<IDevice>({ name: "", info: [] });
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ export const UpdateDevice = ({
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    setDevice((prevState: any) => {
+    setDevice((prevState: IDevice) => {
       const newInfo = prevState.info ? [...prevState.info] : [];
       newInfo[index] = {
         ...newInfo[index],
@@ -115,7 +115,7 @@ export const UpdateDevice = ({
           name="name"
           value={device?.name || ""}
           handleOnChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setDevice((prevDevice: any) => ({
+            setDevice((prevDevice: IDevice) => ({
               ...prevDevice!,
               name: e.target.value,
             }))
