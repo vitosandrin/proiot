@@ -103,13 +103,13 @@ export const NewDevice = ({
           <Button
             Icon={FaMinusSquare}
             onClick={() => handleRemoveForm(index)}
-            width="32px"
-            height="32px"
+            width="28px"
+            height="28px"
             iconHeight="24px"
             iconWidth="24px"
-            primaryColor={theme?.font?.colors?.white}
+            primaryColor={theme?.font?.colors?.dark}
             hoverColor={theme?.colors?.dark?.pure}
-            backgroundColor={theme?.colors?.background[1]}
+            backgroundColor={theme?.colors?.background}
           />
         </Container>
       );
@@ -137,14 +137,14 @@ export const NewDevice = ({
         <Button
           Icon={FaPlusSquare}
           onClick={handleAddForm}
-          width="32px"
-          height="32px"
+          width="28px"
+          height="28px"
           iconHeight="24px"
           iconWidth="24px"
-          disabled={device?.info?.length === 4}
+          disabled={device?.info?.length === 3}
           primaryColor={theme?.font?.colors?.dark}
           hoverColor={theme?.colors?.dark?.pure}
-          backgroundColor={theme?.colors?.background[1]}
+          backgroundColor={theme?.colors?.background}
         />
         <Form gap="xs" align="center" justify="center" direction="row">
           {renderForms()}

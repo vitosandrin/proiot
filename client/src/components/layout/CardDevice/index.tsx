@@ -36,7 +36,7 @@ export const CardDevice = ({
       <h2>Device Data:</h2>
       <p>Name: {data?.name}</p>
       {data?.info?.map((item) => (
-        <p>
+        <p key={item._id}>
           {item.type}: {item.value + item.unit}
         </p>
       ))}

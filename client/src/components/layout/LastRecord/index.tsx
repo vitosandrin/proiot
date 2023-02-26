@@ -26,7 +26,7 @@ export const LastRecord = () => {
         <ContainerData align="center" justify="center" direction="column">
           <p>Name: {deviceReceived?.name}</p>
           {deviceReceived?.info?.map((item) => (
-            <p>
+            <p key={item._id}>
               {item.type}: {item.value + item.unit}
             </p>
           ))}
