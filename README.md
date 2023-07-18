@@ -1,19 +1,19 @@
 # 💻 ProIot Challenge
-Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cliente pode cadastrar seus dispositivos, excluir e alterar suas informações. Toda requisição feita (CREATE, UPDATE, DELETE) no sistema é enviada via HTTP e WebSocket para todos os clientes conectados.
+A fullstack Typescript device management application where the customer can register their devices, delete and change their information. Every request made (CREATE, UPDATE, DELETE) in the system is sent via HTTP and WebSocket to all connected clients.
 
-# 📜 Documentos úteis
-* Insomnia JSON com todas as requisições e payloads '/server/insomnia'
+# 📜 Utils Documents
+* Insomnia JSON with all requests and payloads '/server/insomnia'
 
-* Collection de 'devices' com registros '/server/devices_collection.json'
+* Collection of 'devices' with records '/server/devices_collection.json'
 
-# 🤹‍♀️ Como rodar o projeto
-1 - Abra o terminal no local que deseja clonar o repositório e execute o comando `git clone https://github.com/vitosandrin/proiot.git` 
+# 🤹‍♀️ How to run?
+1 - Open the terminal in the location you want to clone the repository and run the command `git clone https://github.com/vitosandrin/proiot.git` 
 
-2 - Abra o terminal no diretorio 'server' e execute o comando `yarn dev`
+2 - Open a terminal in the 'server' directory and run the command `yarn dev`
 
-3 - Abra o terminal no diretorio 'client' e execute o comando `yarn dev`
+3 - Open a terminal in the 'client' directory and run the command `yarn dev`
 
-4 - Abra em seu navegador o link http://localhost:5173/ e você já estará conectado ao servidor HTTP e WebSocket!
+4 - Open the link http://localhost:5173/ in your browser and you will already be connected to the HTTP and WebSocket server!
 
 ## ✨ Techs
   * Back-end:
@@ -45,8 +45,8 @@ Uma aplicação fullstack Typescript de gerenciamento de dispositivos onde o cli
 
 - [ ] Remove Device - `DELETE /device/:deviceId`
 
-## 💾 Banco de dados
-- [ ] Collection de dispositivo (device):
+## 💾 DataBase
+- [ ] Collection (device):
    - name
    - description
    - sensorName
